@@ -1,13 +1,13 @@
 # EXPERIMENT-02-INTERFACING-A-DIGITAL-INPUT-OUTPUT-TO-IOT-DEVELOPMENT-BOARD
 
 
-**DATE:**
+**DATE: 25.03.2026**
 
-**NAME:**
+**NAME: kishore r**
 
-**ROLL NO:**
+**REF NO: 212224230129**
 
-**DEPARTMENT:**
+**DEPARTMENT: BTECH(IT)**
 
 ## Aim
 
@@ -40,14 +40,17 @@ IR technology is used in a wide range of wireless applications which includes re
 
 1. Click on STM 32 CUBE IDE, the following screen will appear
    
- ![image](https://user-images.githubusercontent.com/36288975/226189166-ac10578c-c059-40e7-8b80-9f84f64bf088.png)
+ <img width="1129" height="616" alt="image" src="https://github.com/user-attachments/assets/80915e43-02e5-49b6-be5a-8745884edb47" />
+
 
 
 2. Click on FILE, click on new stm 32 project
 
-![image](https://user-images.githubusercontent.com/36288975/226189215-2d13ebfb-507f-44fc-b772-02232e97c0e3.png)
+<img width="1142" height="615" alt="image" src="https://github.com/user-attachments/assets/d4462b78-286c-49d1-b57c-5cedc9a4ba71" />
 
-![image](https://user-images.githubusercontent.com/36288975/226189230-bf2d90dd-9695-4aaf-b2a6-6d66454e81fc.png)
+
+<img width="1144" height="611" alt="image" src="https://github.com/user-attachments/assets/afce4927-c9ed-474a-95ff-35e359b1f99a" />
+
 
 3. Select the target to be programmed as shown below and click on next
 
@@ -75,12 +78,14 @@ IR technology is used in a wide range of wireless applications which includes re
 
 8. Edit the program and as per required 
 
-![image](https://user-images.githubusercontent.com/36288975/226189461-a573e62f-a109-4631-a250-a20925758fe0.png)
+<img width="1140" height="613" alt="image" src="https://github.com/user-attachments/assets/a396eabd-533a-475a-a09a-be7d3758480a" />
+
 
 
 9. Use project and build all 
 
-![image](https://user-images.githubusercontent.com/36288975/226189554-3f7101ac-3f41-48fc-abc7-480bd6218dec.png)
+<img width="1141" height="613" alt="image" src="https://github.com/user-attachments/assets/90fdf460-9217-495c-a4c2-99e469711a90" />
+
 
 10. Once the project is bulild 
 
@@ -94,7 +99,8 @@ IR technology is used in a wide range of wireless applications which includes re
 
 
 13. Connect the STM board through the COM port, then upload the corresponding project ELF file/Hex file or Bin file in Erasing & Programming Window,while ensuring the board is in flash mode, and click on 'Start Program'.
-    ![image](https://github.com/user-attachments/assets/9383531d-8204-4697-9321-55afb6abee2e)
+   <img width="1101" height="594" alt="image" src="https://github.com/user-attachments/assets/2f5b006a-35cb-442e-90f4-f581ed54ada4" />
+
 
 14.  After the file download is complete, switch your board to run mode and press the reset button to see the output
 
@@ -102,10 +108,43 @@ IR technology is used in a wide range of wireless applications which includes re
 ## STM 32 CUBE PROGRAM
 
 ```
-// Your STM 32 CUBE Program code here
+#include "main.h"
+#include "stdbool.h"
+bool ir_sensor;
+void digi_inp();
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+  while (1)
+  {
+    digi_inp();
+    
+  } 
+}
+void digi_inp()
+{
+	ir_sensor=HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_3);
+	if(ir_sensor==0)
+	{
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_0,GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+	}
+}
 ```
 
 ## OUTPUT
+<img width="717" height="925" alt="image" src="https://github.com/user-attachments/assets/d8d87b3f-40ca-4583-8b08-789cacaef551" />
+
+
+![WhatsApp Image 2025-09-21 at 13 55 44_8956191f](https://github.com/user-attachments/assets/7ff20008-58be-4952-b43b-21dbd4c1a8dc)
+
 
 ## Result
 
